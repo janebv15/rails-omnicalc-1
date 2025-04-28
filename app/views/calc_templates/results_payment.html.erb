@@ -1,36 +1,17 @@
-<h1>Payment results</h1>>
+<h1>Payment results</h1>
 
-<%= params %>
+<dl>
+  <dt>APR</dt>
+  <dd><%= @apr %></dd>
 
-<ol>
-  <dt>
-  APR
-  </dt>
+  <dt>Number of years</dt>
+  <dd><%= @years %></dd>
 
-  <dd>
-    <%= @APR %>
-  </dd>
+  <dt>Principal</dt>
+  <dd><%= @principal %></dd>
 
-<dt>
-  Number of years
-</dt>
-<dd>
-  <%= @years %>
-</dd>
-
-<dt>
-Principal
-</dt>
-<dd>
-  <%= @principal %>
-</dd>
-
-<dt>
-Payment
-</dt>
-<dd>
-  <% @the_result %>
-</dd>
+  <dt>Payment</dt>
+  <dd><%= @the_result %></dd>
 </dl>
 
 <a href="/payment/new">

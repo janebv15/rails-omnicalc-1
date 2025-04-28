@@ -36,7 +36,23 @@ class CalcController < ApplicationController
     end
 
     def payment_results
-      render({ :template => "calc_templates/results_payment"})
-    end
-    
+        apr     = params.fetch("apr").to_f
+        years   = params.fetch("years").to_i
+        principal = params.fetch("principal").to_f
+      
+        # do the math…
+        monthly_rate   = apr / 100.0 / 12.0
+        total_payments = years * 12
+        numerator      = monthly_rate * (1 + monthly_rate)**total_payments
+        denominator    = (1 + monthly_rate)**total_payments - 1
+        payment        = principal * numerator / denominator
+      
+        @apr        = apr.round(4).to_s
+        @years      = years
+        @principal  = principal.to_fs(:currency)
+        @the_result = payment.to_fs(:currency)
+      
+        render({ :template => "calc_templates/results_payment"})
+      end
+
   end
